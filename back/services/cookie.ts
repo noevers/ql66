@@ -24,8 +24,26 @@ export default class CookieService {
 
   public async addCookie(cookies: string[]) {
     let content = getFileContentByName(config.cookieFile);
-    const originCookies = content.split('\n').filter((x) => !!x);
-    const result = originCookies.concat(cookies);
+    let originCookies = content.split('\n').filter((x) => !!x);
+    let newCookies = [] ;
+    for(let j = 0; j<cookies.length;j++){
+      let newCookie = cookies[i];
+      let cookieUser = newCookie.split(";")[1];
+      let isBh = true;
+      let result = '' ;
+      for(let i = 0; i<originCookies.length;i++){
+        let oldCookie = originCookies[i];
+        if(oldCookie.indexOf(cookieUser)>-1) {
+          originCookies[i] = oldCookie;
+          isBh = false;
+          break;
+        }
+      }
+      if(isBh == true){
+        newCookies.push(newCookie);
+      }
+    }
+    const result = originCookies.concat(newCookies);
     fs.writeFileSync(config.cookieFile, result.join('\n'));
     return '';
   }
