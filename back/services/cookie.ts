@@ -38,7 +38,7 @@ export default class CookieService {
           break;
         }
       }
-      if(isBh == true){
+      if(isBh){
         newCookies.push(newCookie);
       }
     }
