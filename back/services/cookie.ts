@@ -30,11 +30,10 @@ export default class CookieService {
       let newCookie = cookies[j];
       let cookieUser = newCookie.split(";")[1];
       let isBh = true;
-      let result = '' ;
       for(let i = 0; i<originCookies.length;i++){
         let oldCookie = originCookies[i];
         if(oldCookie.indexOf(cookieUser)>-1) {
-          originCookies[i] = oldCookie;
+          originCookies[i] = newCookie;
           isBh = false;
           break;
         }
