@@ -21,6 +21,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { request } from '@/utils/http';
 import QRCode from 'qrcode.react';
 import CookieModal from './modal';
+import QRModal from './qrmodal';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './index.less';
@@ -177,6 +178,49 @@ const Config = () => {
       },
     },
     {
+      title: '创建时间',
+      dataIndex: 'timestamp',
+      key: 'timestamp',
+      align: 'center' as const,
+      width: ' 20%',
+      render: (text: string, record: any) => {
+        var date = new Date(text); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+        var Y = date.getFullYear() + '-';
+        var M =
+          (date.getMonth() + 1 < 10
+            ? '0' + (date.getMonth() + 1)
+            : date.getMonth() + 1) + '-';
+        var D =
+          (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
+        var h =
+          (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) +
+          ':';
+        // var m =
+        //   (date.getMinutes() < 10
+        //     ? '0' + date.getMinutes()
+        //     : date.getMinutes()) + ':';
+        var m =
+          date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+        var s =
+          date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
+
+        // const strDate = Y + M + D + h + m + s;
+        const strDate = Y + M + D + h + m;
+        return (
+          <span
+            style={{
+              textAlign: 'left',
+              display: 'inline-block',
+              wordBreak: 'break-all',
+              cursor: 'text',
+            }}
+          >
+            {strDate}
+          </span>
+        );
+      },
+    },
+    {
       title: '操作',
       key: 'action',
       align: 'center' as const,
@@ -211,6 +255,7 @@ const Config = () => {
   const [value, setValue] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isQRModalVisible, setIsQRModalVisible] = useState(false);
   const [editedCookie, setEditedCookie] = useState();
   const [selectedRowIds, setSelectedRowIds] = useState<string[]>([]);
 
@@ -287,6 +332,9 @@ const Config = () => {
   const addCookie = () => {
     setEditedCookie(null as any);
     setIsModalVisible(true);
+  };
+  const addQRCookie = () => {
+    setIsQRModalVisible(true);
   };
 
   const editCookie = (record: any, index: number) => {
@@ -451,6 +499,9 @@ const Config = () => {
       className="session-wrapper"
       title="Session管理"
       extra={[
+        <Button key="2" type="primary" onClick={() => addQRCookie()}>
+          扫码添加Cookie
+        </Button>,
         <Button key="2" type="primary" onClick={() => addCookie()}>
           添加Cookie
         </Button>,
@@ -521,6 +572,18 @@ const Config = () => {
         handleCancel={handleCancel}
         cookie={editedCookie}
       />
+      {isQRModalVisible && ( (
+        <QRModal
+          visible={isQRModalVisible}
+          handleCancel={(cookies) => {
+            setIsQRModalVisible(false);
+            if (cookies && cookies.length > 0) {
+              handleCookies(cookies);
+            }
+          }}
+        />
+      )
+      )}
     </PageContainer>
   );
 };

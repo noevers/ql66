@@ -49,6 +49,7 @@ const Config = () => {
     <PageContainer
       className="ql-container-wrapper"
       title="config.sh"
+      loading={loading}
       extra={[
         <Button key="1" type="primary" onClick={updateConfig}>
           保存
