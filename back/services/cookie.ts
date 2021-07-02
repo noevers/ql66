@@ -27,7 +27,7 @@ export default class CookieService {
     let originCookies = content.split('\n').filter((x) => !!x);
     let newCookies = [] ;
     for(let j = 0; j<cookies.length;j++){
-      let newCookie = cookies[i];
+      let newCookie = cookies[j];
       let cookieUser = newCookie.split(";")[1];
       let isBh = true;
       let result = '' ;
