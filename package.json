@@ -39,7 +39,8 @@
     "p-queue": "6.6.2",
     "reflect-metadata": "^0.1.13",
     "typedi": "^0.8.0",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "png-js": "1.0.0"
   },
   "devDependencies": {
     "@ant-design/pro-layout": "^6.5.0",
