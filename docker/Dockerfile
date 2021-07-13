@@ -39,6 +39,11 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && chmod 777 ${QL_DIR}/docker/*.sh \
     && npm install -g pm2 \
     && npm install -g pnpm \
+    && pnpm install -g ts-node \
+    && pnpm i  png-js -S \
+    && pnpm i -g typescript \
+    && pnpm i -g tslib \
+    && pnpm i -g ts-md5 \
     && rm -rf /root/.npm \
     && pnpm install --prod \
     && rm -rf /root/.pnpm-store
