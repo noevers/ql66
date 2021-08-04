@@ -53,6 +53,7 @@ export default class QRCodeService {
     console.log("\n####################################################\n\n");
     return userCookie;
   }
+ 
   
   private  randomString(e) {
       e = e || 32;
@@ -74,7 +75,7 @@ export default class QRCodeService {
                 'Accept': 'application/json, text/plain, */*',
                 'Accept-Language': 'zh-cn',
                 'Referer': 'https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=' + timeStamp + '&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport',
-                'User-Agent': `jdapp;android;10.0.6;6.0;${randomString(40)};network/wifi;model/MI 5;addressid/137981279;aid/372fc46cc36d1ea6;oaid/;osVer/23;appBuild/88829;partner/jingdong;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 6.0; MI 5 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/46.0.2490.76 Mobile Safari/537.36`,
+                'User-Agent': 'jdapp;iPhone;10.0.10;14.3;'+randomString(40)+';network/wifi;model/iPhone12,1;addressid/4199175193;appBuild/167741;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
                 'Host': 'plogin.m.jd.com'
             }
         });
@@ -106,7 +107,7 @@ export default class QRCodeService {
                   'Accept': 'application/json, text/plain, */*',
                   'Cookie': this.cookies,
                   'Referer': 'https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state=' + timeStamp + '&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport',
-                'User-Agent': `jdapp;android;10.0.6;6.0;${randomString(40)};network/wifi;model/MI 5;addressid/137981279;aid/372fc46cc36d1ea6;oaid/;osVer/23;appBuild/88829;partner/jingdong;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 6.0; MI 5 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/46.0.2490.76 Mobile Safari/537.36`,
+                'User-Agent': 'jdapp;iPhone;10.0.10;14.3;'+randomString(40)+';network/wifi;model/iPhone12,1;addressid/4199175193;appBuild/167741;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
                   'Host': 'plogin.m.jd.com',
               }
           });
@@ -142,7 +143,7 @@ export default class QRCodeService {
                 'Connection': 'Keep-Alive',
                 'Content-Type': 'application/x-www-form-urlencoded; Charset=UTF-8',
                 'Accept': 'application/json, text/plain, */*',
-                'User-Agent': `jdapp;android;10.0.6;6.0;${randomString(40)};network/wifi;model/MI 5;addressid/137981279;aid/372fc46cc36d1ea6;oaid/;osVer/23;appBuild/88829;partner/jingdong;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 6.0; MI 5 Build/MRA58K; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/46.0.2490.76 Mobile Safari/537.36`,
+                'User-Agent': 'jdapp;iPhone;10.0.10;14.3;'+randomString(40)+';network/wifi;model/iPhone12,1;addressid/4199175193;appBuild/167741;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
             }
         });
 
