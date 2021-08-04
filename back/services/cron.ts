@@ -156,19 +156,25 @@ export default class CronService {
 
   public async stop(ids: string[]) {
     return new Promise((resolve: any) => {
+
       this.cronDb.find({ _id: { $in: ids } }).exec((err, docs: Crontab[]) => {
+        for (const doc of docs) {
+          if (doc.pid) {
+            try {
+              process.kill(-doc.pid);
+            } catch (error) {
+              this.logger.silly(error);
+            }
+          }
+        }
         this.cronDb.update(
           { _id: { $in: ids } },
           { $set: { status: CrontabStatus.idle }, $unset: { pid: true } },
         );
-        const pids = docs
-          .map((x) => x.pid)
-          .filter((x) => !!x)
-          .join('\n');
-        exec(`echo - e "${pids}" | xargs kill - 9`, (err) => {
-          resolve();
-        });
+
+        resolve();
       });
+
     });
   }
 
