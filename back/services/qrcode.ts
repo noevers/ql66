@@ -126,7 +126,7 @@ export default class QRCodeService {
             form: {
                 lang: 'chs',
                 appid: 300,
-                returnurl: 'https://wqlogin2.jd.com/passport/LoginRedirect?state=1100399130787&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action',
+                returnurl: 'https://wqlogin2.jd.com/passport/LoginRedirect?state=' + timeStamp + '&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action',
                 source: 'wq_passport'
             },
             headers: {
