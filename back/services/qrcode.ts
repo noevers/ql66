@@ -102,7 +102,9 @@ export default class QRCodeService {
                   'Referer': 'https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wqlogin2.jd.com/passport/LoginRedirect?state=' + timeStamp + '&returnurl=//home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport',
                   'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 13_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 SP-engine/2.14.0 main%2F1.0 baiduboxapp/11.18.0.16 (Baidu; P2 13.3.1) NABar/0.0`,
                   'Host': 'plogin.m.jd.com',
-                  'Accept-Language': 'zh-cn'
+                  'Accept-Language': 'zh-cn',
+                  'Cookie': this.cookies
+
 
               }
           });
