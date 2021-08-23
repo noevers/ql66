@@ -44,7 +44,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && pnpm i -g typescript \
     && pnpm i -g tslib \
     && pnpm i -g ts-md5 \
-    && pnpm i -g md5 \
     && rm -rf /root/.npm \
     && pnpm install --prod \
     && pip3 install -U requests[socks] \
