@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/inod/ql66">
-    <img width="150" src="images/qinglong.png">
+    <img width="150" src="public/images/qinglong.png">
   </a>
 </p>
 
