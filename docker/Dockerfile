@@ -46,6 +46,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && pnpm i -g ts-md5 \
     && rm -rf /root/.npm \
     && pnpm install --prod \
+    && pip3 install requests \
     && pip3 install -U requests[socks] \
     && rm -rf /root/.pnpm-store
 ENTRYPOINT ["./docker/docker-entrypoint.sh"]
