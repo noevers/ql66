@@ -154,27 +154,38 @@ export default class CronService {
     }
   }
 
+  
   public async stop(ids: string[]) {
-    return new Promise((resolve: any) => {
-
-      this.cronDb.find({ _id: { $in: ids } }).exec((err, docs: Crontab[]) => {
-        for (const doc of docs) {
-          if (doc.pid) {
-            try {
-              process.kill(-doc.pid);
-            } catch (error) {
-              this.logger.silly(error);
+ 
+  return new Promise((resolve: any) => {
+      this.cronDb
+        .find({ _id: { $in: ids } })
+        .exec(async (err, docs: Crontab[]) => {
+          for (const doc of docs) {
+            if (doc.pid) {
+              try {
+                process.kill(-doc.pid);
+              } catch (error) {
+                this.logger.silly(error);
+              }
+            }
+            const err = await this.killTask(doc.command);
+            if (doc.log_path) {
+              const str = err ? `\n${err}` : '';
+              fs.appendFileSync(
+                `${doc.log_path}`,
+                `${str}\n## 执行结束...  ${new Date().toLocaleString()} `,
+              );
             }
           }
-        }
-        this.cronDb.update(
-          { _id: { $in: ids } },
-          { $set: { status: CrontabStatus.idle }, $unset: { pid: true } },
-        );
-
-        resolve();
-      });
-
+          this.cronDb.update(
+            { _id: { $in: ids } },
+            { $set: { status: CrontabStatus.idle }, $unset: { pid: true } },
+            { multi: true },
+          );
+          this.queue.clear();
+          resolve();
+        });
     });
   }
 
