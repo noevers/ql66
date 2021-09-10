@@ -188,6 +188,34 @@ export default class CronService {
         });
     });
   }
+  
+  private async killTask(name: string) {
+    let taskCommond = `ps -ef | grep "${name}" | grep -v grep | awk '{print $1}'`;
+    const execAsync = promisify(exec);
+    try {
+      let pid = (await execAsync(taskCommond)).stdout;
+      if (pid) {
+        pid = (await execAsync(`pstree -p ${pid}`)).stdout;
+      } else {
+        return;
+      }
+      const pids = pid.match(/\d+/g);
+      const killLogs = [];
+      for (const id of pids) {
+        const c = `kill -9 ${id}`;
+        const { stdout, stderr } = await execAsync(c);
+        if (stderr) {
+          killLogs.push(stderr);
+        }
+        if (stdout) {
+          killLogs.push(stdout);
+        }
+      }
+      return killLogs.length > 0 ? JSON.stringify(killLogs) : '';
+    } catch (e) {
+      return JSON.stringify(e);
+    }
+  }
 
   private async runSingle(id: string): Promise<number> {
     return new Promise(async (resolve: any) => {
