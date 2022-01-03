@@ -108,19 +108,18 @@ export default class CookieService {
 
   private getJdInfo(cookie: string) {
     return fetch(
-      `https://wq.jd.com/user_new/info/GetJDUserInfoUnion?sceneval=2`,
+      `https://me-api.jd.com/user_new/info/GetJDUserInfoUnion`,
       {
-        method: 'post',
+        method: 'get',
         headers: {
           Accept: '*/*',
           'Accept-Encoding': 'gzip, deflate, br',
           'Accept-Language': 'zh-cn',
           Connection: 'keep-alive',
           Cookie: cookie,
-        "Referer": "https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&",
-          'User-Agent':
-            'Mozilla/5.0 (iPhone; CPU iPhone OS 14_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Mobile/15E148 Safari/604.1',
-          Host: 'wq.jd.com',
+         "Referer": "https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&",
+          "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Mobile/15E148 Safari/604.1",
+          "Host": "me-api.jd.com"
         },
       },
     )
